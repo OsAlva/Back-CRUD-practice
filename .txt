@@ -1,0 +1,1 @@
+comandos a recordar npm  init -y -> create a package.json

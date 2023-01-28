@@ -10,8 +10,8 @@ const router = Router()
 
 router.get('/posts', getPosts) 
 router.post('/posts', postPosts );
-router.put('/posts', updatePosts);
-router.delete('/posts', deletePosts);
+router.put('/posts/:id', updatePosts);
+router.delete('/posts/:id', deletePosts);
 router.get('/posts/:id', getPost)
 
 

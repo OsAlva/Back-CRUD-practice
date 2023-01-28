@@ -1,1 +1,6 @@
 comandos a recordar npm  init -y -> create a package.json
+
+
+
+
+Para alojar imagenes usamos -> cloudinary

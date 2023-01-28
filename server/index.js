@@ -1,12 +1,11 @@
 
-import express from 'express';
-import postRoutes from './routes/posts.routes.js'
 import { conectDB } from './db.js';
+import {PORT} from './config.js';
+import app from './app.js';
 
-const app = express();
+
 conectDB();
 
-app.use(postRoutes);
 
-app.listen(3050);
-console.log(' Server listening on port 3050');
+app.listen(PORT);
+console.log(' Server listening on port', PORT);

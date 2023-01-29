@@ -1,4 +1,6 @@
 import Post from '../models/Post.js';
+import {uploadImage, deleteImage} from '../libs/Cloudinary.js';
+import fs from 'fs-extra';
 
 export const getPosts = async(req,res) => {
     try{
@@ -7,16 +9,28 @@ export const getPosts = async(req,res) => {
     }
     catch(err){
         console.error(err);
-        return res.status(500).json('error!');
+        return res.status(500).json({message: error.message});
     }  
 }
 
-export const postPosts = async(req,res) => {
+export const createPosts = async(req,res) => {
     try{
         console.log(req.body);
         const {title,description} = req.body
+        let image;
+
+        if(req.files.image){
+            const result = await uploadImage(req.files.image.tempFilePath)
+            image = {
+                url: result.secure_url,
+                public_id: result.public_id
+            }
+            // console.log(result);
+            await fs.remove(req.files.image.tempFilePath);
+        }
+
         //create a new post
-        const newPost = new Post({title, description})
+        const newPost = new Post({title, description, image: image})
         //save the post
         await newPost.save();
     
@@ -44,6 +58,12 @@ export const deletePosts = async(req,res) => {
     try{
         const postRemoved = await Post.findByIdAndDelete(req.params.id, req.body)
         if(!postRemoved) return res.sendStatus(404);
+
+        if(postRemoved.image.public_id){
+          await deleteImage(postRemoved.image.public_id); 
+        }
+        
+        // fs.remove(postRemoved )
 
         return res.sendStatus(204);
     }

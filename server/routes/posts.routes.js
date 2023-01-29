@@ -1,6 +1,6 @@
 import {Router} from 'express';
 import {getPosts, 
-        postPosts, 
+        createPosts, 
         updatePosts,
         deletePosts,
         getPost} from '../controllers/posts.controllers.js';
@@ -9,7 +9,7 @@ import {getPosts,
 const router = Router()
 
 router.get('/posts', getPosts) 
-router.post('/posts', postPosts );
+router.post('/posts', createPosts );
 router.put('/posts/:id', updatePosts);
 router.delete('/posts/:id', deletePosts);
 router.get('/posts/:id', getPost)

@@ -4,3 +4,17 @@ comandos a recordar npm  init -y -> create a package.json
 
 
 Para alojar imagenes usamos -> cloudinary
+
+
+front:
+npm i react-router-dom react-hot-toast react-icons axios formik yup
+react-router-dom 
+react-hot-toast 
+react-icons
+axios -> enviar peticiones http
+formik -> validar desde front
+yup -> definir que validar, string, min num
+
+
+tailwind:
+m-auto -> centra horizontalmente
